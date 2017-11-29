@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Search from './Search.jsx';
-import RoomList from './RoomList.jsx';
-import Sidebar from './Sidebar.jsx';
+import { Link } from 'react-router-dom';
+import Search from '../Room/Search';
+import RoomList from './RoomList';
+import Sidebar from './Sidebar';
 
-const lobby = io('/lobby');
+// const lobby = io('/lobby');
 
-class App extends React.Component {
+class Homepage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Link to='/room'>Room</Link>
         <h1>Fam.ly</h1>
         <Search />
         <RoomList rooms={this.state.roomList} />
@@ -29,4 +30,4 @@ class App extends React.Component {
   }
 }
 
-// ReactDOM.render(<App />, document.getElementById('homepage'));
+export default Homepage;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RoomListEntry from './RoomListEntry.jsx';
+import RoomListEntry from './RoomListEntry';
 
 const RoomList = ({ rooms }) => (
   <div>

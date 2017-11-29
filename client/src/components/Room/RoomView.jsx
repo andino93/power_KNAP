@@ -164,4 +164,5 @@ class RoomView extends React.Component {
   }
 }
 
-ReactDOM.render(<RoomView />, document.getElementById('room'));
+export default RoomView;
+// ReactDOM.render(<RoomView />, document.getElementById('room'));
