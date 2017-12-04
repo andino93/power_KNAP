@@ -172,7 +172,10 @@ roomSpace.on('connection', (socket) => {
 
   // socket.on('vote', update database)
   socket.on('typingMessage', (user, roomId) => {
-    const userId = user.split('#')[1].substring(0, 8);
+    let userId;
+    if (user.includes('#')) {
+      userId = user.split('#')[1].substring(0, 8);
+    }
     socket.broadcast.to(roomId).emit('typingMessage', `${userId} is typing a message...`);
   });
 

@@ -64,7 +64,7 @@ class Homepage extends React.Component {
           {view}
         </div>
         <div className="container rooms">
-          <div>Listening Rooms</div>
+          <div className="listening">Listening Rooms</div>
           <RoomList
             rooms={this.state.roomList}
             createRoom={this.createRoom}

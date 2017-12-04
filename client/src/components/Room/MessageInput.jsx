@@ -60,9 +60,6 @@ class MessageInput extends React.Component {
 
     return (
       <div className="message-imput-stuff">
-        <div className="messageInput">
-
-        </div>
         <div className="emoji-picker">
           {this.state.showPicker &&
             <div className="inner-picker">
@@ -77,7 +74,9 @@ class MessageInput extends React.Component {
         <div className="inputBoxes">
           <div
             className="userTyping"
-          >{this.props.typing}</div>
+          >
+            {this.props.typing}
+          </div>
           <input
             type="text"
             className="messageText"
@@ -86,7 +85,7 @@ class MessageInput extends React.Component {
             onChange={e => this.enterMessage(e)}
             value={this.state.message}
           />
-          <button onClick={() => this.showEmojiPicker()}>=)</button>
+          <button className="emojiButton" onClick={() => this.showEmojiPicker()}>=)</button>
         </div>
       </div>
     );

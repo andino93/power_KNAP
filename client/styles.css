@@ -30,8 +30,13 @@ body {
   "playlist search chat";
 }
 
+.listening {
+  font-size: 36px;
+}
+
 .lobby {
   background: #2D7AFF;
+  font-size: 28px;
 }
 
 .rooms {
@@ -44,10 +49,10 @@ body {
   -ms-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
+  box-shadow: 3px 3px 3px 3px #888888;
 }
 .container {
   box-sizing: border-box;
-  /*border: 0.3px dotted white;*/
 }
 
 /***** Fonts *****/
@@ -181,7 +186,8 @@ body {
   padding: 10px 0;
   margin: 5px;
   opacity: 0.6;
-  background: white;
+  background: #F5F5F5;
+  box-shadow: 1px 1px 1px #888888;
   color: black;
   transition: opacity 0.4s;
 }
@@ -238,6 +244,14 @@ body {
   opacity: 1;
 }
 
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
 /***** Chat component *****/
 .userChat {
   grid-area: chat;
@@ -269,12 +283,20 @@ body {
   display: flex;
 }
 
+.emojiButton {
+  position: absolute;
+  right: 25px;
+  background-color: transparent;
+  border: none;
+  padding: 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+}
+
 .messageText {
-  /*display: flex;
-  flex-direction: column;
-  grid-area: messageinput;*/
   padding: 5px;
-  /*align-self: flex-end;*/
   width: 95%;
   margin: 0 auto;
   border-radius: 15px;
