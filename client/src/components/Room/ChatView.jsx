@@ -11,38 +11,33 @@ class ChatView extends React.Component {
       messages: [],
     };
     this.sendMessage = this.sendMessage.bind(this);
-    // this.typingMessage = this.typingMessage.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.message !== null) {
+  componentWillReceiveProps({ message }) {
+    if (message !== null) {
       if (this.state.messages.length > 0) {
-        if (nextProps.message.dateTime !== this.state.messages[this.state.messages.length - 1].date) {
+        if (message.dateTime !== this.state.messages[this.state.messages.length - 1].date) {
           this.setState({
             messages: this.state.messages.concat({
-              message: nextProps.message.body,
-              username: nextProps.message.userName,
-              date: nextProps.message.dateTime,
-              color: nextProps.message.userColor,
+              message: message.body,
+              username: message.userName,
+              date: message.dateTime,
+              color: message.userColor,
             }),
           });
         }
       } else {
         this.setState({
           messages: this.state.messages.concat({
-            message: nextProps.message.body,
-            username: nextProps.message.userName,
-            date: nextProps.message.dateTime,
-            color: nextProps.message.userColor,
+            message: message.body,
+            username: message.userName,
+            date: message.dateTime,
+            color: message.userColor,
           }),
         });
       }
     }
   }
-
-  // typingMessage() {
-  //   this.props.broadcastTyping();
-  // }
 
   sendMessage(time, message) {
     this.props.emitMessage(time, message);
@@ -70,7 +65,6 @@ class ChatView extends React.Component {
 }
 
 ChatView.propTypes = {
-  //  userTyping: PropTypes.string.isRequired,
   emitMessage: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   broadcastTyping: PropTypes.func.isRequired,
