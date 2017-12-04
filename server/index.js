@@ -40,10 +40,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Room HTTP Requests
 app.get('/renderRoom/:roomId', (req, res) => {
   const { params } = req;
+  console.log(params)
   const roomProperties = {};
   db.findVideos(params.roomId)
+    .tap(videos => console.log('videos'))
     .then((videos) => { roomProperties.videos = videos; })
-    .then(() => db.getRoomProperties(Number(params.roomId)))
+    .then(() => db.getRoomProperties(params.roomId))
     .then(({ indexKey, startTime }) => {
       roomProperties.index = indexKey;
       roomProperties.start = startTime;
@@ -55,6 +57,7 @@ app.get('/renderRoom/:roomId', (req, res) => {
 app.get('/playlist/:roomId', (req, res) => {
   const { params } = req;
   const roomProperties = {};
+
   db.findVideos(params.roomId)
     .then((videos) => { roomProperties.videos = videos; })
     .then(() => db.getRoomProperties(params.roomId))
@@ -118,7 +121,7 @@ roomSpace.on('connection', (socket) => {
         if (videos.length === 1) db.setStartTime();
       })
       .catch((emptyPlaylist) => {
-        if (Array.isArray(emptyPlaylist)) { // Check if the thrown item is an array rather than an Error
+        if (Array.isArray(emptyPlaylist)) {
           roomSpace.emit('default');
         } else {
           throw emptyPlaylist;
@@ -138,6 +141,7 @@ roomSpace.on('connection', (socket) => {
       url: video.id.videoId,
       description: video.snippet.description,
       videoId: video.videoId,
+      thumbnail: video.snippet.thumbnails.default.url,
       roomId,
     };
     return db.createVideoEntry(videoData)
@@ -153,7 +157,7 @@ roomSpace.on('connection', (socket) => {
 
   socket.on('emitMessage', (message, roomId) => {
     if (message.userName.includes('#')) {
-      message.userName = message.userName.split('#')[1].substring(0, 8); // Pluck Socket ID
+      message.userName = message.userName.split('#')[1].substring(0, 8);
     }
     let sum = 0;
     for (let i = 0; i < 3; i += 1) {

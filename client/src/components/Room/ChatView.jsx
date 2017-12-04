@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import MessageInput from './MessageInput';
 import Messages from './Messages';
 
@@ -51,16 +52,18 @@ class ChatView extends React.Component {
     return (
       <div className="container userChat">
         <h3>Chat Box</h3>
-        <div className="scroll">
+        <div className="chatscroll">
           <div className="messageContainer">
             <Messages messages={this.state.messages} />
           </div>
         </div>
-        <MessageInput
-          sendMessage={this.sendMessage}
-          typingMessage={this.props.broadcastTyping}
-          typing={this.props.typing}
-        />
+        <div className="messageInput">
+          <MessageInput
+            sendMessage={this.sendMessage}
+            typingMessage={this.props.broadcastTyping}
+            typing={this.props.typing}
+          />
+        </div>
       </div>
     );
   }
@@ -75,4 +78,3 @@ ChatView.propTypes = {
 };
 
 export default ChatView;
-

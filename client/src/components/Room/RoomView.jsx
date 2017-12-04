@@ -20,7 +20,7 @@ class RoomView extends React.Component {
       playlist: [],
       startOptions: null,
       isHost: false,
-      message: '',
+      message: null,
       username: '', // refers to socketIDs when user is in chat but not logged in
       user: null, // refers to Google username when logged in in chat
       // TODO: eliminate the need for two separate username references
@@ -195,11 +195,12 @@ class RoomView extends React.Component {
 
     return (
       <div className="room">
-          <div className="container navbar">
-            <Link to='/'>
-            fam.ly
-            </Link>
-          {view}</div>
+        <div className="container navbar">
+          <Link to='/'>
+          fam.ly
+          </Link>
+          {view}
+        </div>
         {playlistComponent}
         <VideoPlayer
           currentVideo={this.state.currentVideo}

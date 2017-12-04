@@ -25,6 +25,7 @@ const Video = sequelize.define('video', {
     defaultValue: 0,
   },
   description: Sequelize.STRING,
+  thumbnail: Sequelize.STRING,
   roomId: Sequelize.STRING,
 });
 
@@ -39,6 +40,9 @@ const Room = sequelize.define('room', {
   name: Sequelize.STRING,
 });
 
+const User = sequelize.define('user', {
+
+})
 // Room.hasMany(Video, { as: 'Videos' });
 
 const checkIfTablesExists = () => {
@@ -55,6 +59,7 @@ const createVideoEntry = (videoData) => {
     url: videoData.url,
     description: videoData.description,
     roomId: videoData.roomId,
+    thumbnail: videoData.thumbnail,
   };
   return Video.create(videoEntry);
 };
